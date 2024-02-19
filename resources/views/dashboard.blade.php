@@ -1,4 +1,8 @@
 <x-app-layout>
+    @section('title')
+    <title>Корзина</title>
+    @endsection
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Корзина

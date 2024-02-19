@@ -1,4 +1,7 @@
 <x-guest-layout>
+    @section('title')
+        <title>Авторизация</title>
+    @endsection
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
