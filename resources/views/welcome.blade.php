@@ -23,6 +23,7 @@
             @if (Route::has('login'))
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                     @auth
+                        <span id='basket-phone-count' class='border-2 border-solid rounded-full bg-yellow-300 p-2'>1</span>
                         <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Корзина</a>
                     @else
                         <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Вход</a>
@@ -44,7 +45,7 @@
                         <input type="text" name='price' class='text-2xl p-2 mb-2 bg-inherit w-full' value="{{$phone->price}}" readonly>
                         @if($is_auth)
                             Количество:
-                            <input type="number" name='count' class='text-2xl p-2 mb-2 bg-inherit border-solid border-2' value=0 min=0 max=100>
+                            <input type="number" name='count' class='text-2xl p-2 mb-2 bg-inherit border-solid border-2' value=1 min=1 max=1000>
                             <br>
                             <input type='submit' class=' border-solid border-2 py-3 px-6 bg-yellow-300 border-inherit rounded-md' value='Добавить в корзину'>
                         @endif

@@ -17,5 +17,4 @@ phoneFormArr.forEach(form => form.addEventListener('submit', function(e){
   /** обработать ответ сервера о добавлении смартфона в корзину */
 function processStore(data, form) {
     console.log(data);
-    console.log(form);
 }
