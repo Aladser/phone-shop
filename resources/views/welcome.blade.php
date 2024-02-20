@@ -9,10 +9,13 @@
         <!-- Шрифты -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+        <!-- css -->
+        <link rel="stylesheet" href="/css/basket.css">
         <!-- script -->
         <script src="https://cdn.tailwindcss.com"></script>
         <script type="text/javascript" src="/js/ServerRequest.js" defer=""></script>
         <script type="text/javascript" src="/js/basket.js" defer=""></script>
+
     </head>
     <body class="antialiased">
         <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
@@ -34,12 +37,16 @@
             <div class="max-w-7xl mx-auto p-6 lg:p-8 w-3/4 flex flex-wrap justify-around">
                 <!-- список телефонов магазина -->
                 @foreach ($phones as $phone)
-                <div class='inline-block py-6 px-12 mb-6 border-solid border-2 shadow-xl m-1'>
+                <div class='inline-block py-6 px-12 mb-6 border-solid border-2 shadow-xl m-1 w-96'>
                     <form class='form-add-to-basket'>
-                        <p class='text-5xl p-2 mb-2' name='name'>{{$phone->name}}</p>
-                        <p class='text-2xl p-2 mb-2' name='price'>{{$phone->price}} руб.</p>
+                        @csrf
+                        <input type="text" name='name' class='text-5xl p-2 mb-2 bg-inherit w-full' value="{{$phone->name}}" readonly>
+                        <input type="text" name='price' class='text-2xl p-2 mb-2 bg-inherit w-full' value="{{$phone->price}}" readonly>
                         @if($is_auth)
-                        <input type='submit' class=' border-solid border-2 py-3 px-6 bg-yellow-300 border-inherit rounded-md' value='Добавить в корзину'>
+                            Количество:
+                            <input type="number" name='count' class='text-2xl p-2 mb-2 bg-inherit border-solid border-2' value=0 min=0 max=100>
+                            <br>
+                            <input type='submit' class=' border-solid border-2 py-3 px-6 bg-yellow-300 border-inherit rounded-md' value='Добавить в корзину'>
                         @endif
                     </form>
                 </div>

@@ -1,7 +1,21 @@
+const phoneServerCtrlURL = '/phone';
 // массив форм смартфонов
 const phoneFormArr = document.querySelectorAll('.form-add-to-basket');
-// добавление товара в корзину
+
+// добавление смартфона в корзину
 phoneFormArr.forEach(form => form.addEventListener('submit', function(e){
     e.preventDefault();
-    console.log(this);
+    ServerRequest.execute(
+      phoneServerCtrlURL,
+        (data) => processStore(data, form),
+        "post",
+        this.errorPrg,
+        new FormData(form)
+      );
 }));
+
+  /** обработать ответ сервера о добавлении смартфона в корзину */
+function processStore(data, form) {
+    console.log(data);
+    console.log(form);
+}

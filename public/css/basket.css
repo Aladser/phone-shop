@@ -1,0 +1,5 @@
+/** убирает эффекты input's товаров при клике*/
+.form-add-to-basket input[type='text']:focus {
+    outline: none;
+    cursor: default;
+}

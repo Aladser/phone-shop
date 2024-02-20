@@ -19,12 +19,10 @@ class PhoneController extends Controller
         );
     }
 
-    public function create()
-    {
-    }
-
     public function store(Request $request)
     {
+        $data = $request->all();
+        var_dump($data);
     }
 
     public function show(string $id)

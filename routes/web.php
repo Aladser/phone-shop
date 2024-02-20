@@ -16,4 +16,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::resource('/phone', PhoneController::class)
+    ->except(['show', 'create', 'edit', 'update', 'destroy'])
+    ->middleware(['auth']);
+
 require __DIR__.'/auth.php';
