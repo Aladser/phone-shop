@@ -10,7 +10,13 @@ class PhoneController extends Controller
 {
     public function index()
     {
-        return view('welcome', ['phones' => Phone::all(), 'is_auth' => Auth::user()]);
+        return view(
+            'welcome',
+            [
+                'phones' => Phone::all(),
+                'is_auth' => Auth::user(),
+            ]
+        );
     }
 
     public function create()

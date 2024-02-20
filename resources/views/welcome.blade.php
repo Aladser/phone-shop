@@ -6,7 +6,7 @@
 
         <title>Магазин смартфонов</title>
 
-        <!-- Fonts -->
+        <!-- Шрифты -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
         <script src="https://cdn.tailwindcss.com"></script>
@@ -32,11 +32,13 @@
                 <!-- список телефонов магазина -->
                 @foreach ($phones as $phone)
                 <div class='inline-block py-6 px-12 mb-6 border-solid border-2 shadow-xl m-1'>
-                    <p class='text-5xl p-2 mb-2'>{{$phone->name}}</p>
-                    <p class='text-2xl p-2 mb-2'>{{$phone->price}} руб.</p>
-                    @if($is_auth)
-                    <button class=' border-solid border-2 py-3 px-6 bg-yellow-300 border-inherit rounded-md'>Добавить в корзину</button>
-                    @endif
+                    <form class='form-add-to-basket'>
+                        <p class='text-5xl p-2 mb-2' name='name'>{{$phone->name}}</p>
+                        <p class='text-2xl p-2 mb-2' name='price'>{{$phone->price}} руб.</p>
+                        @if($is_auth)
+                        <input type='submit' class=' border-solid border-2 py-3 px-6 bg-yellow-300 border-inherit rounded-md' value='Добавить в корзину'>
+                        @endif
+                    </form>
                 </div>
                 @endforeach
             </div>
