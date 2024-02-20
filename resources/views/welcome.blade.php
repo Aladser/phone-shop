@@ -28,23 +28,17 @@
                 </div>
             @endif
             <!-- контент -->
-            <div class="max-w-7xl mx-auto p-6 lg:p-8">
-                <table class="table-auto shadow-2xl">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" class="px-36 py-6">Модель</th>
-                            <th scope="col" class="px-36 py-6">Цена</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($phones as $phone)
-                        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                            <td class="px-36 py-6">{{$phone->name}}</td>
-                            <td class="px-36 py-6">{{$phone->price}}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+            <div class="max-w-7xl mx-auto p-6 lg:p-8 w-3/4 flex flex-wrap justify-around">
+                <!-- список телефонов магазина -->
+                @foreach ($phones as $phone)
+                <div class='inline-block py-6 px-12 mb-6 border-solid border-2 shadow-xl m-1'>
+                    <p class='text-5xl p-2 mb-2'>{{$phone->name}}</p>
+                    <p class='text-2xl p-2 mb-2'>{{$phone->price}} руб.</p>
+                    @if($is_auth)
+                    <button class=' border-solid border-2 py-3 px-6 bg-yellow-300 border-inherit rounded-md'>Добавить в корзину</button>
+                    @endif
+                </div>
+                @endforeach
             </div>
         </div>
     </body>
