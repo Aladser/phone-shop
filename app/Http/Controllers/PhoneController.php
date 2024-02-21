@@ -11,14 +11,20 @@ class PhoneController extends Controller
 {
     public function index()
     {
-        $authUserId = Auth::user()->id;
-        $basketPhoneCount = BasketPhone::where('user_id', $authUserId)->sum('count');
+        $authUser = Auth::user();
+        if ($authUser) {
+            $basketPhoneCount = BasketPhone::where('user_id', $authUser->id)->sum('count');
+            $is_auth = true;
+        } else {
+            $basketPhoneCount = 0;
+            $is_auth = false;
+        }
 
         return view(
             'welcome',
             [
                 'phones' => Phone::all(),
-                'is_auth' => Auth::user(),
+                'is_auth' => $is_auth,
                 'basket_phone_count' => $basketPhoneCount,
             ]
         );

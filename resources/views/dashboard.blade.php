@@ -13,8 +13,30 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    Содержимое Корзины
-                </div>
+                    <table class='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mb-4'>
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                            <tr>
+                                <th  scope="col" class="px-6 py-3 text-center">Название</th>
+                                <th  scope="col" class="px-6 py-3 text-center">Цена</th>
+                                <th  scope="col" class="px-6 py-3 text-center">Количество</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($basket_phones as $basket_phone)
+                            <tr  class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <td class="px-6 py-4 text-center">{{$basket_phone['name']}}</td>
+                                <td class="px-6 py-4 text-center">{{$basket_phone['price']}} р.</td>
+                                <td class="px-6 py-4 text-center">{{$basket_phone['count']}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <div class='w-full py-2 text-center font-bold mb-4'>Итоговая сумма: {{$total_price}} руб.</div>
+                    <form class='inline-block' action="{{route('order.store')}}" method='post'>
+                        @csrf
+                        <input type="submit" class='border-solid border-2 py-3 px-6 bg-yellow-300 border-inherit rounded-md inline-block m-auto' value="Оформить заказ">
+                    </form>
+                 </div>
             </div>
         </div>
     </div>
