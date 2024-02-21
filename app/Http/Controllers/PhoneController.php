@@ -7,6 +7,7 @@ use App\Models\Phone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+// Телефоны
 class PhoneController extends Controller
 {
     public function index()

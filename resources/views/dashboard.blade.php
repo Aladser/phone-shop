@@ -35,6 +35,7 @@
                     <form action="{{route('order.store')}}" method='post'>
                         @csrf
                         <input type="submit" class='border-solid border-2 py-3 px-6 bg-yellow-300 border-inherit rounded-md inline-block m-auto' value='Оформить заказ'>
+                        <a href="{{route('order.index')}}" class='border-solid border-2 py-3 px-6 bg-yellow-300 border-inherit rounded-md inline-block m-auto'>Мои заказы</a>
                     </form>
                   </div>
             </div>

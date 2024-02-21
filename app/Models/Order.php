@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     use HasFactory;
+
+    /** телефоны заказа */
+    public function order_phones()
+    {
+        return $this->hasMany(OrderPhone::class, 'order_id', 'id');
+    }
 }

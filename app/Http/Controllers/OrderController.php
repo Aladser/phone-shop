@@ -9,11 +9,43 @@ use App\Models\Phone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+// Заказы
 class OrderController extends Controller
 {
     public function index()
     {
-        echo 'index';
+        $user_id = Auth::user()->id;
+        // заказы из БД
+        $orderData = Order::where('user_id', $user_id)->get();
+        // массив заказов
+        $orderArr = [];
+        // итоговая стоимость всех заказов
+        $allOrderPrice = 0;
+
+        foreach ($orderData as $order) {
+            // телефоны заказа строкой
+            $phoneArrStr = '';
+            // общая стоимость заказов
+            $orderArr[$order->id]['total_price'] = 0;
+            // время создания
+            $orderArr[$order->id]['created_at'] = $order->created_at->toDateTimeString();
+
+            foreach ($order->order_phones as $order_phone) {
+                $phoneArrStr .= "{$order_phone->phone->name}, ";
+                $orderArr[$order->id]['total_price'] += $order_phone->phone->price * $order_phone->count;
+            }
+            $allOrderPrice += $orderArr[$order->id]['total_price'];
+            $orderArr[$order->id]['phones'] = mb_substr($phoneArrStr, 0, mb_strlen($phoneArrStr) - 2);
+        }
+
+        return view(
+            'orders',
+            [
+                'all_total_price' => $allOrderPrice,
+                'orders' => $orderArr,
+                'is_auth' => !empty(Auth::user()),
+            ]
+        );
     }
 
     public function create()
@@ -67,6 +99,6 @@ class OrderController extends Controller
         // очистка корзины
         BasketPhone::where('user_id', $user_id)->delete();
 
-        return redirect()->route('main');
+        return view('store_order', ['order_id' => $order->id, 'order_created_at' => $order->created_at->toDateTimeString()]);
     }
 }

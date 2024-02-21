@@ -6,6 +6,7 @@ use App\Models\BasketPhone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+// Корзина
 class BasketPhoneController extends Controller
 {
     public function index()
