@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BasketPhoneController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\ProfileController;
@@ -19,7 +20,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/order', [OrderController::class, 'destroy'])->name('order.destroy');
     // Phone
     Route::get('/phone', [PhoneController::class, 'index'])->name('phone.index');
-    Route::post('/phone', [PhoneController::class, 'store'])->name('phone.store');
+    // BasketPhone
+    Route::post('/basket-phone', [BasketPhoneController::class, 'store']);
 });
 
 require __DIR__.'/auth.php';

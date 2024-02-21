@@ -8,7 +8,7 @@ phoneFormArr.forEach((form) =>
     form.addEventListener("submit", function (e) {
         e.preventDefault();
         ServerRequest.execute(
-            "/phone",
+            "/basket-phone",
             (data) => processStore(data),
             "post",
             this.errorPrg,

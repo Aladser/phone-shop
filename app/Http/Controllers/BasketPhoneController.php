@@ -3,17 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\BasketPhone;
+use App\Models\Phone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-// Корзина
+// Телефоны корзины
 class BasketPhoneController extends Controller
 {
-    public function index()
-    {
-        echo 'test';
-    }
-
+    // добавить в корзину
     public function store(Request $request)
     {
         $data = $request->all();
