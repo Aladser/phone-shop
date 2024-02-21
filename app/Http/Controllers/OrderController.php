@@ -11,6 +11,11 @@ class OrderController extends Controller
 {
     public function index()
     {
+        echo 'index';
+    }
+
+    public function create()
+    {
         $basketPhoneRows = BasketPhone::where('user_id', Auth::user()->id);
         // массив товаров в корзине
         $basketPhoneArr = [];
