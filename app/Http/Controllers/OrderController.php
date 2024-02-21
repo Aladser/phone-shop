@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\BasketPhone;
+use App\Models\Order;
+use App\Models\OrderPhone;
 use App\Models\Phone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +37,36 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        echo 'Заказ оформлен!';
+        $user_id = Auth::user()->id;
+
+        // создание заказа
+        $order = new Order();
+        $order->user_id = $user_id;
+        $order->save();
+        if (!$order->save()) {
+            echo 'серверная ошибка добавления пользователя';
+
+            return;
+        }
+
+        // товары из корзины
+        $basketPhones = BasketPhone::where('user_id', $user_id)->get();
+        // добавление товаров заказа
+        foreach ($basketPhones as $basketPhoneRow) {
+            $orderPhone = new OrderPhone();
+            $orderPhone->order_id = $order->id;
+            $orderPhone->phone_id = $basketPhoneRow->phone_id;
+            $orderPhone->count = $basketPhoneRow->count;
+            $orderPhone->save();
+            if (!$orderPhone->save()) {
+                echo 'серверная ошибка добавления пользователя';
+
+                return;
+            }
+        }
+        // очистка корзины
+        BasketPhone::where('user_id', $user_id)->delete();
+
+        return redirect()->route('main');
     }
 }
