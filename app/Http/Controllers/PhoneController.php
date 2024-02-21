@@ -11,11 +11,14 @@ class PhoneController extends Controller
 {
     public function index()
     {
+        $authUserId = Auth::user()->id;
+
         return view(
             'welcome',
             [
                 'phones' => Phone::all(),
                 'is_auth' => Auth::user(),
+                'basket_phone_count' => BasketPhone::where('user_id', $authUserId)->count(),
             ]
         );
     }

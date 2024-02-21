@@ -23,7 +23,13 @@
             @if (Route::has('login'))
                 <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
                     @auth
-                        <span id='basket-phone-count' class='border-2 border-solid rounded-full bg-yellow-300 p-2'>1</span>
+                        <!-- показывает число товаров в корзине-->
+                        @if($basket_phone_count == 0)
+                        <span id='basket-phone-count' class='border-2 border-solid rounded-full bg-yellow-300 p-2 hidden'>0</span>
+                        @else
+                        <span id='basket-phone-count' class='border-2 border-solid rounded-full bg-yellow-300 p-2'>{{$basket_phone_count}}</span>
+                        @endif
+
                         <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Корзина</a>
                     @else
                         <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Вход</a>
