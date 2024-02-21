@@ -12,13 +12,14 @@ class PhoneController extends Controller
     public function index()
     {
         $authUserId = Auth::user()->id;
+        $basketPhoneCount = BasketPhone::where('user_id', $authUserId)->sum('count');
 
         return view(
             'welcome',
             [
                 'phones' => Phone::all(),
                 'is_auth' => Auth::user(),
-                'basket_phone_count' => BasketPhone::where('user_id', $authUserId)->count(),
+                'basket_phone_count' => $basketPhoneCount,
             ]
         );
     }
@@ -35,6 +36,7 @@ class PhoneController extends Controller
             $user_id = Auth::user()->id;
             // поиск этого телефона у пользователя в корзине
             $basketPhone = BasketPhone::where('user_id', $user_id)->where('phone_id', $phone_id);
+
             // добавление в корзину
             if ($basketPhone->exists()) {
                 $basketPhone = $basketPhone->first();
@@ -45,6 +47,7 @@ class PhoneController extends Controller
                 $basketPhone->user_id = $user_id;
                 $basketPhone->count = $data['count'];
             }
+
             $isAdded = $basketPhone->save();
             if ($isAdded) {
                 echo json_encode(['result' => 1, 'count' => $basketPhone->count]);

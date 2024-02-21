@@ -17,7 +17,7 @@ return new class() extends Migration {
             $table->bigInteger('phone_id')->unsigned();
             $table->foreign('phone_id')->references('id')->on('phones')->cascadeOnDelete();
             $table->integer('count')->unsigned()->default(1);
-            $table->unique('user_id', 'phone_id');
+            $table->index(['user_id', 'phone_id'])->unique();
         });
     }
 
