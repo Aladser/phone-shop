@@ -17,7 +17,8 @@ Route::middleware('auth')->group(function () {
     // Order
     Route::get('/order', [OrderController::class, 'index'])->name('order.index');
     Route::post('/order', [OrderController::class, 'store'])->name('order.store');
-    Route::delete('/order', [OrderController::class, 'destroy'])->name('order.destroy');
+    Route::delete('/order/{id}', [OrderController::class, 'destroy']);
+    Route::get('/order/{id}', [OrderController::class, 'show']);
     // Phone
     Route::get('/phone', [PhoneController::class, 'index'])->name('phone.index');
     // BasketPhone
