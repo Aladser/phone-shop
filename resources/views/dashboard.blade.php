@@ -13,6 +13,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
+                    @if(count($basket_phones) > 0)
                     <table class='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mb-4'>
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                             <tr>
@@ -37,6 +38,10 @@
                         <input type="submit" class='border-solid border-2 py-3 px-6 bg-yellow-300 border-inherit rounded-md inline-block m-auto' value='Оформить заказ'>
                         <a href="{{route('order.index')}}" class='border-solid border-2 py-3 px-6 bg-yellow-300 border-inherit rounded-md inline-block m-auto'>Мои заказы</a>
                     </form>
+                    @else
+                        <p class='text-center text-2xl mb-4 text-red-600'>Ваша корзина пуста</p>
+                        <a href="{{route('order.index')}}" class='border-solid border-2 py-3 px-6 bg-yellow-300 border-inherit rounded-md inline-block m-auto'>Мои заказы</a>
+                    @endif
                   </div>
             </div>
         </div>

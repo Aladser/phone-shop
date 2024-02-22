@@ -1,9 +1,14 @@
 <x-app-layout>
 
+    @section('title')
+    <title>Мои заказы</title>
+    @endsection
+
     @section('js')
     <script type="text/javascript" src="/js/ServerRequest.js" defer=""></script>
     <script type="text/javascript" src="/js/order.js" defer=""></script>
     @endsection
+    
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Мои заказы
@@ -14,7 +19,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <section class="p-6 text-gray-900">
-                    <h2 class='text-center p-4 text-3xl'>Ваши заказы</h2>
                     <!-- Список заказов -->
                     @foreach ($orders as $key=>$order)
                         <article class='order py-6 px-12 mb-6 border-solid border-2 shadow-xl m-1 w-full'>
