@@ -104,6 +104,11 @@ class OrderController extends Controller
 
     public function destroy(int $id)
     {
-        var_dump($id);
+        $order = Order::find($id);
+        if ($order) {
+            return ['result' => (int) Order::find($id)->delete()];
+        } else {
+            return ['result' => 0, 'description' => 'заказ не существует'];
+        }
     }
 }
