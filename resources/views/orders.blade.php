@@ -15,16 +15,23 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <section class="p-6 text-gray-900">
                     <h2 class='text-center p-4 text-3xl'>Ваши заказы</h2>
+                    <!-- Список заказов -->
                     @foreach ($orders as $key=>$order)
-                    <article class='order py-6 px-12 mb-6 border-solid border-2 shadow-xl m-1 w-full'>
-                        <h3 class='font-semibold p-2'><span class='order__id font-bold text-xl'>Заказ {{$key}}</span> от {{$order['created_at']}}</h3>
-                        <p class='p-2'>Модели: {{$order['phones']}}</p>
-                        <p class='p-2 mb-3'>Общая стоимость: <span class='order__price'>{{$order['total_price']}}</span> руб.</p>
-                        <button class='order__remove-button border-solid border-2 py-3 px-6 bg-yellow-300 border-inherit rounded-md inline-block m-auto'>Отменить заказ</button>
-                    </article>
+                        <article class='order py-6 px-12 mb-6 border-solid border-2 shadow-xl m-1 w-full'>
+                            <h3 class='font-semibold p-2'><span class='order__id font-bold text-xl'>Заказ {{$key}}</span> от {{$order['created_at']}}</h3>
+                            <p class='p-2'>Модели: {{$order['phones']}}</p>
+                            <p class='p-2 mb-3'>Общая стоимость: <span class='order__price'>{{$order['total_price']}}</span> руб.</p>
+                            <button class='order__remove-button border-solid border-2 py-3 px-6 bg-yellow-300 border-inherit rounded-md inline-block m-auto'>Отменить заказ</button>
+                        </article>
                     @endforeach
-                    <p class='text-center font-bold text-4xl'>Общая стоимость всех заказов</p>
-                    <p id='total-price' class='text-center font-bold text-5xl'>{{$all_total_price}} руб.</p>
+                    <!-- Общая стоимость всех заказов -->
+                    @if(count($orders) !== 0)
+                        <p id='total-price-header' class='text-center font-bold text-4xl'>Общая стоимость всех заказов</p>
+                        <p id='total-price' class='text-center font-bold text-5xl'>{{$all_total_price}} руб.</p>
+                        <p id='empty-order-list' class='text-center text-2xl mb-4 text-red-600 hidden'>Список заказов пуст</p>
+                    @else
+                        <p id='empty-order-list' class='text-center text-2xl mb-4 text-red-600'>Список заказов пуст</p>
+                    @endif
                 </section>
             </div>
         </div>
