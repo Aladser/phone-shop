@@ -101,4 +101,9 @@ class OrderController extends Controller
 
         return view('store_order', ['order_id' => $order->id, 'order_created_at' => $order->created_at->toDateTimeString()]);
     }
+
+    public function destroy(int $id)
+    {
+        var_dump($id);
+    }
 }
