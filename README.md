@@ -1,11 +1,5 @@
 # Магазин смартфонов (Laravel)
 
-### Диаграмма БД
-![image](/storage/img/db.png)
-
-Требуется сделать миграцию
-``php artisan migrate --seed``
-
 ### Описание
 
 #### Товар-смартфон: 
@@ -25,6 +19,9 @@
 * Телефон заказа ``OrderPhone``
 * Телефон ``Phone``
  
+#### Диаграмма БД
+![image](/storage/img/db.png)
+
 #### Контроллеры
 * Телефоны ``PhoneController``
 * Телефоны корзины ``BasketPhoneController``
