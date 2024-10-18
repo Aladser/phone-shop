@@ -1,10 +1,5 @@
 # Магазин смартфонов (Laravel)
 
-### Стек
-* PHP 8, Laravel 10
-* MySQL
-* Javascript
-
 ### Диаграмма БД
 ![image](/storage/img/db.png)
 
